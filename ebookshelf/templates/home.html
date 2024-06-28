@@ -1,0 +1,338 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+ <!-- body starts here -->
+
+<div class="mt-5 grid grid-cols-7 gap-4 ">
+    {% for book in books %}
+    <div class="w-48 h-fit hover:scale-105 hover:shadow-sm">
+        {% if user.is_authenticated %}
+        <a href="pdf_view/{{book.id}}/">
+            <div class="h-40 w-48 flex justify-center ">
+                <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+            </div>
+            <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+            <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        </a>
+        {% else %}
+        <div class="h-40 w-48 flex justify-center ">
+            <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+        </div>
+        <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+        <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+
+
+    {% for book in books %}
+    <div class="w-48 h-fit hover:scale-105 hover:shadow-sm">
+        {% if user.is_authenticated %}
+        <a href="pdf_view/{{book.id}}/">
+            <div class="h-40 w-48 flex justify-center ">
+                <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+            </div>
+            <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+            <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        </a>
+        {% else %}
+        <div class="h-40 w-48 flex justify-center ">
+            <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+        </div>
+        <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+        <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% for book in books %}
+    <div class="w-48 h-fit hover:scale-105 hover:shadow-sm">
+        {% if user.is_authenticated %}
+        <a href="pdf_view/{{book.id}}/">
+            <div class="h-40 w-48 flex justify-center ">
+                <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+            </div>
+            <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+            <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        </a>
+        {% else %}
+        <div class="h-40 w-48 flex justify-center ">
+            <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+        </div>
+        <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+        <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% for book in books %}
+    <div class="w-48 h-fit hover:scale-105 hover:shadow-sm">
+        {% if user.is_authenticated %}
+        <a href="pdf_view/{{book.id}}/">
+            <div class="h-40 w-48 flex justify-center ">
+                <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+            </div>
+            <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+            <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        </a>
+        {% else %}
+        <div class="h-40 w-48 flex justify-center ">
+            <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+        </div>
+        <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+        <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% for book in books %}
+    <div class="w-48 h-fit hover:scale-105 hover:shadow-sm">
+        {% if user.is_authenticated %}
+        <a href="pdf_view/{{book.id}}/">
+            <div class="h-40 w-48 flex justify-center ">
+                <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+            </div>
+            <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+            <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        </a>
+        {% else %}
+        <div class="h-40 w-48 flex justify-center ">
+            <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+        </div>
+        <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+        <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% for book in books %}
+    <div class="w-48 h-fit hover:scale-105 hover:shadow-sm">
+        {% if user.is_authenticated %}
+        <a href="pdf_view/{{book.id}}/">
+            <div class="h-40 w-48 flex justify-center ">
+                <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+            </div>
+            <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+            <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        </a>
+        {% else %}
+        <div class="h-40 w-48 flex justify-center ">
+            <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+        </div>
+        <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+        <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% for book in books %}
+    <div class="w-48 h-fit hover:scale-105 hover:shadow-sm">
+        {% if user.is_authenticated %}
+        <a href="pdf_view/{{book.id}}/">
+            <div class="h-40 w-48 flex justify-center ">
+                <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+            </div>
+            <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+            <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        </a>
+        {% else %}
+        <div class="h-40 w-48 flex justify-center ">
+            <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+        </div>
+        <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+        <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% for book in books %}
+    <div class="w-48 h-fit hover:scale-105 hover:shadow-sm">
+        {% if user.is_authenticated %}
+        <a href="pdf_view/{{book.id}}/">
+            <div class="h-40 w-48 flex justify-center ">
+                <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+            </div>
+            <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+            <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        </a>
+        {% else %}
+        <div class="h-40 w-48 flex justify-center ">
+            <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+        </div>
+        <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+        <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% for book in books %}
+    <div class="w-48 h-fit hover:scale-105 hover:shadow-sm">
+        {% if user.is_authenticated %}
+        <a href="pdf_view/{{book.id}}/">
+            <div class="h-40 w-48 flex justify-center ">
+                <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+            </div>
+            <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+            <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        </a>
+        {% else %}
+        <div class="h-40 w-48 flex justify-center ">
+            <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+        </div>
+        <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+        <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% for book in books %}
+    <div class="w-48 h-fit hover:scale-105 hover:shadow-sm">
+        {% if user.is_authenticated %}
+        <a href="pdf_view/{{book.id}}/">
+            <div class="h-40 w-48 flex justify-center ">
+                <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+            </div>
+            <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+            <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        </a>
+        {% else %}
+        <div class="h-40 w-48 flex justify-center ">
+            <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+        </div>
+        <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+        <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% for book in books %}
+    <div class="w-48 h-fit hover:scale-105 hover:shadow-sm">
+        {% if user.is_authenticated %}
+        <a href="pdf_view/{{book.id}}/">
+            <div class="h-40 w-48 flex justify-center ">
+                <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+            </div>
+            <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+            <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        </a>
+        {% else %}
+        <div class="h-40 w-48 flex justify-center ">
+            <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+        </div>
+        <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+        <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% for book in books %}
+    <div class="w-48 h-fit hover:scale-105 hover:shadow-sm">
+        {% if user.is_authenticated %}
+        <a href="pdf_view/{{book.id}}/">
+            <div class="h-40 w-48 flex justify-center ">
+                <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+            </div>
+            <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+            <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        </a>
+        {% else %}
+        <div class="h-40 w-48 flex justify-center ">
+            <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+        </div>
+        <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+        <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% for book in books %}
+    <div class="w-48 h-fit hover:scale-105 hover:shadow-sm">
+        {% if user.is_authenticated %}
+        <a href="pdf_view/{{book.id}}/">
+            <div class="h-40 w-48 flex justify-center ">
+                <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+            </div>
+            <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+            <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        </a>
+        {% else %}
+        <div class="h-40 w-48 flex justify-center ">
+            <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+        </div>
+        <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+        <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% for book in books %}
+    <div class="w-48 h-fit hover:scale-105 hover:shadow-sm">
+        {% if user.is_authenticated %}
+        <a href="pdf_view/{{book.id}}/">
+            <div class="h-40 w-48 flex justify-center ">
+                <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+            </div>
+            <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+            <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        </a>
+        {% else %}
+        <div class="h-40 w-48 flex justify-center ">
+            <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+        </div>
+        <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+        <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% for book in books %}
+    <div class="w-48 h-fit hover:scale-105 hover:shadow-sm">
+        {% if user.is_authenticated %}
+        <a href="pdf_view/{{book.id}}/">
+            <div class="h-40 w-48 flex justify-center ">
+                <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+            </div>
+            <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+            <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        </a>
+        {% else %}
+        <div class="h-40 w-48 flex justify-center ">
+            <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+        </div>
+        <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+        <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% for book in books %}
+    <div class="w-48 h-fit hover:scale-105 hover:shadow-sm">
+        {% if user.is_authenticated %}
+        <a href="pdf_view/{{book.id}}/">
+            <div class="h-40 w-48 flex justify-center ">
+                <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+            </div>
+            <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+            <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        </a>
+        {% else %}
+        <div class="h-40 w-48 flex justify-center ">
+            <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+        </div>
+        <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+        <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% for book in books %}
+    <div class="w-48 h-fit hover:scale-105 hover:shadow-sm">
+        {% if user.is_authenticated %}
+        <a href="pdf_view/{{book.id}}/">
+            <div class="h-40 w-48 flex justify-center ">
+                <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+            </div>
+            <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+            <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        </a>
+        {% else %}
+        <div class="h-40 w-48 flex justify-center ">
+            <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+        </div>
+        <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+        <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+    
+</div>
+
+ <!-- body ends  -->
+{% endblock %}

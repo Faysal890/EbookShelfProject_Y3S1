@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'src/styles.css' %}">
+</head>
+<body>
+    <!-- Navbar -->
+<nav class="w-full h-24 flex items-center justify-between bg-[#A58E74]">
+    <div class="w-64 flex items-center justify-around">
+        <img src="{% static 'src/images/ebookshelf.jpeg'%}" class="w-24 h-24 ">
+        <a href="/" class="text-xl hover:text-white">Home</a>
+    </div>
+    <div class="w-96 flex items-center justify-around">
+        {% if user.is_authenticated %}
+        <div class="w-20 h-10 flex items-center justify-center  hover:text-white rounded-xl">
+            <a href="/account/userpage/" class="hover:text-white text-xl">{{user.username}}</a>
+        </div>
+        <div class="w-20 h-10 flex items-center justify-center hover:bg-[#8d7a63] hover:text-white rounded-xl">
+            <a href="/account/logout" class="text-xl">log out</a>
+        </div>
+        {% else %}
+        <div class="w-20 h-10 flex items-center justify-center hover:bg-[#8d7a63] hover:text-white rounded-xl">
+            <a href="/account/login" class="hover:text-white text-xl">Log in</a>
+        </div>
+        <div class="w-20 h-10 flex items-center justify-center hover:bg-[#8d7a63] hover:text-white rounded-xl">
+            <a href="/account/signup/" class="text-xl">Sign up</a>
+        </div>
+        {% endif %}
+    </div>
+ </nav>
+
+ <!-- navbar ends -->
+    {% block content %}
+    
+    {% endblock %}
+</body>
+</html>

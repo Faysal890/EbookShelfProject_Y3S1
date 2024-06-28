@@ -1,0 +1,35 @@
+{% extends 'base.html'%}
+{% load static%}
+{% block content %}
+
+<div class="w-full h-screen bg-[#ffefcd]  flex justify-center ">
+    <div class="w-6/12 h-4/6 flex items-center justify-center bg-[#A58E74] mt-20 rounded-md ">
+        <form  method="post">
+            {% csrf_token %}
+            <div class="w-80 h-20 ">
+                <span class="text-white ml-1">Username</span>
+                <input type="text" name="username" class="h-10 w-80 rounded-md"><br>
+            </div>
+
+            <div class="w-80 h-20 ">
+                <span class="text-white ml-1">Password</span>
+                <input type="password" name="password" class="h-10 w-80 rounded-md"><br>
+            </div>
+            
+            <div class="text-white">
+                {% for message in messages %}
+                <h3>{{message}}</h3>
+                {% endfor %}
+            </div>
+            <button type="submit" class="h-9 w-16 bg-white flex items-center justify-center rounded-md hover:bg-[#ffefcd] text-[#A58E74]">Log in</button>
+
+            <span class="text-white mt-6">Don't have an account <a href="/account/signup" class="text-[#ffefcd]">Sign up</a></span>
+        </form>
+        
+        
+        
+    </div>
+
+    </div>
+</div>
+{% endblock %}

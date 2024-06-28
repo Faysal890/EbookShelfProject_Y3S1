@@ -1,0 +1,49 @@
+{%extends 'base.html'%}
+{%load static%}
+{% block content %}
+
+<div class="w-full h-screen bg-[#ffefcd]  flex justify-center">
+    <div class="w-6/12 h-5/6 flex items-center justify-center bg-[#A58E74] mt-16 rounded-md">
+        <form method="post" >
+            {% csrf_token %}
+            <div class="w-80 h-20 ">
+                <span class="text-white ml-1">First name</span>
+                <input type="text" name="first_name" class="h-8 w-80 rounded-md"><br>
+            </div>
+            <div class="w-80 h-20 ">
+                <span class="text-white ml-1">Last name</span>
+                <input type="text" name="last_name" class="h-8 w-80 rounded-md"><br>
+            </div>
+
+            <div class="w-80 h-20 ">
+                <span class="text-white ml-1">Username</span>
+                <input type="text" name="username" class="h-8 w-80 rounded-md"><br>
+            </div>
+
+            <div class="w-80 h-20 ">
+                <span class="text-white ml-1">Email</span>
+                <input type="email" name="email" class="h-8 w-80 rounded-md"><br>
+            </div>
+            
+            <div class="w-80 h-20 ">
+                <span class="text-white ml-1">Password</span>
+                <input type="password" name="password1" class="h-8 w-80 rounded-md"><br>
+            </div>
+
+            <div class="w-80 h-20 ">
+                <span class="text-white ml-1">Confirm password</span>
+                <input type="password" name="password2" class="h-8 w-80 rounded-md"><br>
+            </div>
+            <div class="text-white">
+                {% for message in messages %}
+                <div class="text-red-400">{{message}}</div>
+                {% endfor %}
+            </div>
+            <button type="submit" class="h-9 w-32 bg-white flex items-center justify-center rounded-md hover:bg-[#ffefcd] text-[#A58E74]">Create account</button>
+            
+        </form>
+
+       
+    </div>
+</div>
+{%endblock%}
