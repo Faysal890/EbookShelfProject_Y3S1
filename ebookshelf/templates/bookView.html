@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF viewer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
+    <style>
+        #pdf_renderer {
+            position: relative;
+        }
+
+        .watermark {
+            position: absolute;
+            top: 6%;
+            left: 60%;
+            transform: translate(-50%, -50%);
+            color: rgba(149, 149, 149, 0.3);
+            font-size: 40px;
+            pointer-events: none;
+            user-select: none;
+        }
+        
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #pdf_renderer {
+                display: none;
+            }
+        }
+        body {
+            background-color: #b5222200;
+        }
+        #my_pdf_viewer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #canvas_container {
+            width: 1250px;
+            height: 640px;
+            overflow: auto;
+            background: #333;
+            text-align: center;
+            border: 3px solid;
+        }
+
+        #pdf_renderer {
+            border: 1px solid black;
+        }
+
+        #navigation-controls {
+            margin-top: 20px;
+        }
+
+        #zoom-controls {
+            margin-top: 20px;
+        }
+        #back_to_home {
+            margin-top: 20px;
+            
+            min-height: 1.25rem;
+            width: 7rem;
+            background-color: #A58E74;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            border-radius: 0.25rem;
+            color: rgb(255 255 255);
+        }
+        #back_to_home a {
+            color: rgb(255 255 255);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <input type="hidden" id="pdfData" value="{{ pdf_base64 }}" />
+    <div id="my_pdf_viewer">
+        <div id="canvas_container">
+            <canvas id="pdf_renderer"></canvas>
+            <div class="watermark">EbookShelf</div>
+        </div>
+        <div id="navigation-controls">
+            <button id="go_previous">Previous</button>
+            <input type="number" value="1" id="current_page">
+            <button id="go_next">Next</button>
+        </div>
+        <div id="zoom-controls">
+            <button id="zoom_in" calss="bg-black">+</button>
+            <button id="zoom_out" class="">-</button>
+        </div>
+        <div id="back_to_home"><a href="/">Back to Home</a></div>
+    </div>
+    <script>
+        var myState = {
+            pdf: null,
+            currentPage: 1,
+            zoom: 1
+        };
+
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.min.js';
+
+        // Convert base64 string to ArrayBuffer
+        function base64ToArrayBuffer(base64) {
+            var binaryString = window.atob(base64);
+            var len = binaryString.length;
+            var bytes = new Uint8Array(len);
+            for (var i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            return bytes.buffer;
+        }
+
+        var pdfBase64 = document.getElementById('pdfData').value;
+        var pdfData = base64ToArrayBuffer(pdfBase64);
+
+        pdfjsLib.getDocument({data: pdfData}).promise.then((pdf) => {
+            myState.pdf = pdf;
+            document.getElementById('current_page').setAttribute('max', myState.pdf.numPages);
+            render();
+        }).catch((error) => {
+            console.error("Error loading PDF: ", error);
+        });
+
+        function render() {
+            myState.pdf.getPage(myState.currentPage).then(page => {
+                var canvas = document.getElementById("pdf_renderer");
+                var ctx = canvas.getContext("2d");
+                var viewport = page.getViewport({ scale: myState.zoom });
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+
+                // Rendering the page
+                page.render({
+                    canvasContext: ctx,
+                    viewport: viewport
+                });
+            }).catch((error) => {
+                console.error("Error rendering page: ", error);
+            });
+        }
+
+        document.getElementById('go_previous').addEventListener('click', () => {
+            if (myState.pdf == null || myState.currentPage <= 1) return;
+            myState.currentPage -= 1;
+            document.getElementById('current_page').value = myState.currentPage;
+            render();
+        });
+
+        document.getElementById('go_next').addEventListener('click', () => {
+            if (myState.pdf == null || myState.currentPage >= myState.pdf.numPages) return;
+            myState.currentPage += 1;
+            document.getElementById('current_page').value = myState.currentPage;
+            render();
+        });
+
+        document.getElementById('current_page').addEventListener('input', (e) => {
+            var pageNumber = Number(e.target.value);
+            if (myState.pdf == null || pageNumber < 1 || pageNumber > myState.pdf.numPages) return;
+            myState.currentPage = pageNumber;
+            render();
+        });
+
+        document.getElementById('zoom_in').addEventListener('click', () => {
+            if (myState.pdf == null) return;
+            myState.zoom += 0.1;
+            render();
+        });
+
+        document.getElementById('zoom_out').addEventListener('click', () => {
+            if (myState.pdf == null) return;
+            myState.zoom -= 0.1;
+            render();
+        });
+
+        window.onbeforeprint = function() {
+            window.print = function() {
+                alert("Printing is disabled on this webpage.");
+            };
+        };
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key == "PrintScreen") {
+                navigator.clipboard.writeText('');
+                alert("Screenshots are disabled.");
+            }
+        });
+    </script>
+</body>
+</html>
