@@ -1,5 +1,12 @@
 {
   "version": 2,
+  "builds": [
+    {
+      "src": "ebookshelf/wsgi.py",
+      "use": "@vercel/python",
+      "config": { "runtime": "python3.9" }
+    }
+  ],
   "routes": [
     { "src": "/static/(.*)", "dest": "/staticfiles/$1" },
     { "src": "/(.*)", "dest": "ebookshelf/wsgi.py" }
