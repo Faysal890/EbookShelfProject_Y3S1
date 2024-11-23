@@ -1,16 +1,13 @@
 {
-  "name": "ebookshelf",
   "version": 2,
-  "builds": [
-    {
-      "src": "server.js",
-      "use": "@now/node-server"
-    }
-  ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/server.js"
-    }
+      {
+          "src": "/static/(.*)",
+          "dest": "/static/$1"
+      },
+      {
+          "src": "/(.*)",
+          "dest": "ebookshelf/wsgi.py"
+      }
   ]
 }
