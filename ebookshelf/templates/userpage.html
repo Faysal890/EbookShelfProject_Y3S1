@@ -2,6 +2,30 @@
 {% load static %}
 {% block content %}
 
+<div class="w-full h-screen  flex justify-center mt-16">
+    <div class="w-2/5 h-2/3 bg-orange-300 rounded-md mr-5">
+        <div class="h-24 w-24 bg-black mt-5 ml-5 rounded"><img src="/media/{{user.profile_pic}}" class="h-auto w-auto rounded"></div>
+        <div class="text-4xl font-bold ml-5 mt-5">Hello, {{user.last_name}} <a href="/account/profileedit/" class="text-[.75rem]">📝</a></div>
+        <div></div>
+        <!-- <div>Premium: Deactive</div> -->
+        <div class="text-xl ml-5">Books read: 0</div>
+    </div>
+    <div>
+        <div class="text-lg font-bold">Subscription</div>
+        {% if subscription_status %}
+        <div class="text-lg">Status: Active</div>
+        <div class="w-64 h-40 bg-green-400 rounded-md text-6xl flex items-center justify-center">✅</div>
+        <div class="bg-green-400 mt-8 rounded text-center text-[#526E48] font-bold">
+            <p>Membership will be expired : </p>
+            <p>{{expire_time}}</p>
+        </div>
+        {% else %}
+        <div class="text-lg">Status: Inactive</div>
+        <div class="w-64 h-40 bg-red-400 rounded-md text-6xl flex items-center justify-center">❌</div>
+        {% endif %}
+    </div> 
+    
 
+</div>
 
 {% endblock %} 

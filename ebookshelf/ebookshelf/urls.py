@@ -26,4 +26,5 @@ urlpatterns = [
     path('pdf_view/<id>/', views.pdf_view, name = 'pdf_view'),
     path('admin/', admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
+    path('subscriptions/', include('subscriptions.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

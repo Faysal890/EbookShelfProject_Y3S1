@@ -4,10 +4,21 @@
 
  <!-- body starts here -->
 
-<div class="mt-5 grid grid-cols-7 gap-4 ">
+{% if not user.is_authenticated %}
+    <div class="w-full h-96 bg-cover bg-center relative" style="background-image: url('/static/src/images/readingroom.jpg');">
+        <p class="text-center text-3xl font-bold text-[#D8D2C2] mb-5 absolute bottom-0 w-full">Ready to read? Create account or log in and restart your membership</p>
+    </div>
+{% endif %}
+{% if user.is_authenticated and not subscription_status %}
+    <div class="w-full h-24 mb-8 bg-cover bg-center relative" style="background-image: url('/static/src/images/books.jpg');">
+        <p class="text-center text-3xl font-bold text-[#D8D2C2] mb-5 absolute bottom-0 w-full">Ready to read? <a class="text-[#e09132] hover:text-red-900" href="/subscriptions/packages/">Get Membership Now</a></p>
+    </div>
+{% endif %}
+
+<div class="mt-5 grid grid-cols-7 gap-4 h-fit">
     {% for book in books %}
     <div class="w-48 h-fit hover:scale-105 hover:shadow-sm">
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and subscription_status %}
         <a href="pdf_view/{{book.id}}/">
             <div class="h-40 w-48 flex justify-center ">
                 <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
@@ -16,11 +27,23 @@
             <span class="w-48 flex justify-center">{{book.book_writer}}</span>
         </a>
         {% else %}
-        <div class="h-40 w-48 flex justify-center ">
-            <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
-        </div>
-        <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
-        <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+            {% if not user.is_authenticated %}
+                <a href="account/login/">
+                    <div class="h-40 w-48 flex justify-center ">
+                        <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+                    </div>
+                    <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+                    <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+                </a>
+            {% else %}
+                <a href="subscriptions/packages/">
+                    <div class="h-40 w-48 flex justify-center ">
+                        <img src="{{book.book_image.url}}" alt="" class="h-40 w-32">
+                    </div>
+                    <span class="font-bold w-48 flex justify-center text-center">{{book.book_name}}</span>
+                    <span class="w-48 flex justify-center">{{book.book_writer}}</span>
+                </a>
+            {% endif %}
         {% endif %}
     </div>
     {% endfor %}

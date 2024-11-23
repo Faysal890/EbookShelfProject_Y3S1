@@ -1,25 +1,57 @@
+from datetime import datetime
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_protect
 from .models import Book
 from django.http import HttpResponse
+from django.contrib.auth import get_user_model
+from subscriptions.models import Subscription
+from django.utils import timezone
+
+User = get_user_model()
 
 import base64
 # Create your views here.
 
+# def home(request):
+#     if request.method == 'POST' and request.POST.get('search')!=None:
+#         data = request.POST
+#         search = data.get('search')
+#         books = Book.objects.filter(book_name__icontains=search)
+#         return render(request, 'home.html', {'books':books})
+#     books = Book.objects.all()
+#     return render(request, 'home.html', {'books':books})
+
 def home(request):
+    if request.method == 'POST' and request.POST.get('search')!=None:
+        data = request.POST
+        search = data.get('search')
+        books = Book.objects.filter(book_name__icontains=search)
+        if request.user.is_authenticated:
+            subscriptions = Subscription.objects.filter(user=request.user)
+            status = False
+            current_time = timezone.now()
+    
+            for sub in subscriptions:
+                if sub.expires_at and sub.expires_at > current_time:
+                    status = True
+                    break
+
+        return render(request, 'home.html', {'books': books, 'subscription_status': status})
     books = Book.objects.all()
+    if request.user.is_authenticated:
+        subscriptions = Subscription.objects.filter(user=request.user)
+        status = False
+        current_time = timezone.now()
+
+        for sub in subscriptions:
+            if sub.expires_at and sub.expires_at > current_time:
+                status = True
+                break
+
+        return render(request, 'home.html', {'books': books, 'subscription_status': status})
     return render(request, 'home.html', {'books':books})
 
 
-# def pdf_view(request,id):
-#     data = Book.objects.get(id=id)
-#     book_pdf = data.book_pdf
-
-#     image_data = book_pdf.read()
-#     actual_filename = book_pdf.name
-#     response = HttpResponse(image_data, content_type='application/pdf')
-#     response['Content-Disposition'] = 'inline; filename="{actual_filename}"'
-#     return response
 
 
 def pdf_view(request, id):

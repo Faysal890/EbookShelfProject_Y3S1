@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="h-screen w-full flex justify-center items-center bg-[#ffefcd]">
+    <div class="h-4/5 w-4/5 flex justify-evenly items-center text-white">
+
+        <!-- Daily Plan -->
+        <div class="h-96 w-64 bg-[#e09132] rounded-md flex justify-center items-center">
+            <form action="{% url 'create_checkout_session' %}" method="POST">
+                {% csrf_token %}
+                <div class="w-fit h-fit">
+                    <p class="font-bold text-3xl text-white">Daily Plan</p>
+                    <p class="text-lg">One day plan</p>
+                    <p><span>$</span> 1.99</p>
+                    <button type="submit" name="membership" value="daily" class="h-10 w-20 mt-5 bg-[#927b60] rounded-md hover:bg-[#ac8459]">Buy now</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Standard Plan -->
+        <div class="h-96 w-64 bg-[#e09132] rounded-md flex justify-center items-center">
+            <form action="{% url 'create_checkout_session' %}" method="POST">
+                {% csrf_token %}
+                <div class="w-fit h-fit">
+                    <p class="font-bold text-3xl text-white">Standard Plan</p>
+                    <p class="text-lg">One month plan</p>
+                    <p><span>$</span> 9.99</p>
+                    <button type="submit" name="membership" value="monthly" class="h-10 w-20 mt-5 bg-[#927b60] rounded-md hover:bg-[#ac8459]">Buy now</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Premium Plan -->
+        <div class="h-96 w-64 bg-[#e09132] rounded-md flex justify-center items-center">
+            <form action="{% url 'create_checkout_session' %}" method="POST">
+                {% csrf_token %}
+                <div class="w-fit h-fit">
+                    <p class="font-bold text-3xl text-white">Premium Plan</p>
+                    <p class="text-lg">One year plan</p>
+                    <p><span>$</span> 89.99</p>
+                    <button type="submit" name="membership" value="yearly" class="h-10 w-20 mt-5 bg-[#927b60] rounded-md hover:bg-[#ac8459]">Buy now</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+{% endblock %}  

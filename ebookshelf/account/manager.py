@@ -19,15 +19,4 @@ class CustomUserManager(DefaultUserManager):
         
         return self.create_user(email, password, **extra_fields)
 
-class CustomUser(AbstractUser):
-    email = models.EmailField(unique=True)
-    username = models.CharField(max_length=150, blank=True, null=True)
-    profile_pic = models.ImageField(upload_to='profile_pics', blank=True, null=True)
-    
-    objects = CustomUserManager()
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
-
-    def __str__(self):
-        return self.email

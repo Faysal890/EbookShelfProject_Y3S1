@@ -8,17 +8,11 @@
             {% csrf_token %}
             <div class="w-80 h-20 ">
                 <span class="text-white ml-1">First name</span>
-                <input type="text" name="first_name" class="h-8 w-80 rounded-md"><br>
+                <input type="text" name="first_name" value="{{user.first_name}}" class="h-8 w-80 rounded-md"><br>
             </div>
             <div class="w-80 h-20 ">
                 <span class="text-white ml-1">Last name</span>
-                <input type="text" name="last_name" class="h-8 w-80 rounded-md"><br>
-            </div>
-
-
-            <div class="w-80 h-20 ">
-                <span class="text-white ml-1">Email</span>
-                <input type="email" name="email" class="h-8 w-80 rounded-md"><br>
+                <input type="text" name="last_name" value = "{{user.last_name}}" class="h-8 w-80 rounded-md"><br>
             </div>
             
             <div class="w-80 h-20 ">
@@ -39,7 +33,7 @@
                 <span class="text-white ml-1">Profile image</span>
                 <input type="file" name="profile_pic"><br>
             </div>
-            <button type="submit" class="h-9 w-32 bg-white flex items-center justify-center rounded-md hover:bg-[#ffefcd] text-[#A58E74]">Create account</button>
+            <button type="submit" class="h-9 w-32 bg-white flex items-center justify-center rounded-md hover:bg-[#ffefcd] text-[#A58E74]">Save changes</button>
             
         </form>
 
