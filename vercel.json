@@ -4,5 +4,5 @@
     { "src": "/static/(.*)", "dest": "/staticfiles/$1" },
     { "src": "/(.*)", "dest": "ebookshelf/wsgi.py" }
   ],
-  "buildCommand": "python manage.py collectstatic --noinput"
+  "buildCommand": "python3 manage.py collectstatic --noinput"
 }
