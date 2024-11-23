@@ -9,16 +9,10 @@ from flask import Flask, app, jsonify, json, request, current_app
 from django.contrib.auth.models import User, auth
 from django.contrib.auth import get_user_model
 from .models import Subscription
-# from django.db import IntegrityError
 from subscriptions.models import ProcessedEvent
-# from django.db import transaction
-# from django.utils.timezone import now
 from django.contrib.auth.decorators import login_required
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
-
-# import stripe
-# from django.conf import settings
 from django.shortcuts import redirect
 from django.http import JsonResponse, HttpResponse, HttpResponseBadRequest
 from django.views.decorators.csrf import csrf_exempt
@@ -61,8 +55,10 @@ def create_checkout_session(request):
                 }],
                 # success_url=request.build_absolute_uri('/subscriptions/success/?session_id={CHECKOUT_SESSION_ID}'),
                 # cancel_url=request.build_absolute_uri('/subscriptions/cancel/'),
-                 success_url='http://127.0.0.1:8000/subscriptions/success/?session_id={CHECKOUT_SESSION_ID}',
-    cancel_url='http://127.0.0.1:8000/subscriptions/cancel/',
+    #              success_url='http://127.0.0.1:8000/subscriptions/success/?session_id={CHECKOUT_SESSION_ID}',
+    # cancel_url='http://127.0.0.1:8000/subscriptions/cancel/',
+                success_url = request.build_absolute_uri('/subscriptions/success/') + '?session_id={CHECKOUT_SESSION_ID}',
+                cancel_url = request.build_absolute_uri('/subscriptions/cancel/'),
             )
             return redirect(checkout_session.url, code=303)
         except Exception as e:
@@ -105,7 +101,7 @@ def success(request):
             expires_at = datetime.now() + relativedelta(months=1)
         elif membership_type == 'yearly':
             expires_at = datetime.now() + relativedelta(years=1)
-        # Save to your Subscription model
+        # Saving Subscription model
         Subscription.objects.create(
             user=request.user,
             stripe_subscription_id=subscription_id,
@@ -137,7 +133,7 @@ def stripe_webhook(request):
 
     event_id = event['id']
 
-    # Check if the event has already been processed
+    # Checking if the event has already been processed
     if ProcessedEvent.objects.filter(event_id=event_id).exists():
         return JsonResponse({'status': 'Event already processed'}, status=200)
 
@@ -145,12 +141,9 @@ def stripe_webhook(request):
     if event['type'] == 'checkout.session.completed':
         session = event['data']['object']
 
-        # Add your subscription logic here
         customer_email = session['customer_details']['email']
         stripe_subscription_id = session['subscription']
-        # Save subscription details...
 
-        # Mark event as processed
         ProcessedEvent.objects.create(event_id=event_id)
 
     return JsonResponse({'status': 'success'}, status=200)
@@ -161,18 +154,17 @@ def handle_checkout_session(session):
     Process a successful checkout session.
     """
     print("Checkout session completed:", session)
-    # Add your logic here (e.g., update user subscription in the database)
+
 
 def handle_invoice_payment(invoice):
     """
     Process a successful invoice payment.
     """
     print("Invoice payment succeeded:", invoice)
-    # Add your logic here (e.g., send confirmation email, update payment status)
+
 
 def handle_subscription_cancellation(subscription):
     """
     Process a subscription cancellation.
     """
     print("Subscription canceled:", subscription)
-    # Add your logic here (e.g., deactivate subscription in your system)
