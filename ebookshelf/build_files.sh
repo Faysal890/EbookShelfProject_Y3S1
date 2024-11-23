@@ -1,11 +1,10 @@
 #!/bin/bash
-
-# Install dependencies
+echo "Installing dependencies..."
 pip install -r requirements.txt
 
-# Collect static files
+echo "Collecting static files..."
 python manage.py collectstatic --noinput
 
-# Move SQLite database to deployment folder
-mkdir -p ./staticfiles/database
-cp db.sqlite3 ./staticfiles/database/
+echo "Preparing database..."
+mkdir -p staticfiles/database
+cp db.sqlite3 staticfiles/database/
