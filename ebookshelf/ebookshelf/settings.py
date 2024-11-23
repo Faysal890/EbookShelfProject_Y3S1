@@ -33,7 +33,7 @@ DEBUG = False
 
 # ALLOWED_HOSTS = []
 # ALLOWED_HOSTS = ['.vercel.app']
-ALLOWED_HOSTS = ['ebookshelf.vercel.app', '.vercel.app']
+ALLOWED_HOSTS = ['ebookshelf.vercel.app', '.vercel.app', '.now.sh', 'localhost', ]
 
 AUTH_USER_MODEL = 'account.CustomUser'
 
