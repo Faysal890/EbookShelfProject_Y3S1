@@ -1,27 +1,25 @@
 {
-  "version": 2,
-  "builds": [
+    "version": 2,
+    "builds": [
       {
-          "src": "ebookshelf/wsgi.py",
-          "use": "@vercel/python",
-          "config": {
-              "maxLambdaSize": "15mb",
-              "runtime": "python3.9"
-          }
+        "src": "ebookshelf/ebookshelf/wsgi.py",
+        "use": "@vercel/python",
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
       },
       {
-          "src": "staticfiles/**/*",
-          "use": "@vercel/static"
+        "src": "ebookshelf/static/**/*",
+        "use": "@vercel/static"
       }
-  ],
-  "routes": [
+    ],
+    "routes": [
       {
-          "src": "/static/(.*)",
-          "dest": "/staticfiles/$1"
+        "src": "/static/(.*)",
+        "dest": "ebookshelf/static/$1"
       },
       {
-          "src": "/(.*)",
-          "dest": "ebookshelf/wsgi.py"
+        "src": "/(.*)",
+        "dest": "ebookshelf/ebookshelf/wsgi.py"
       }
-  ]
-}
+    ]
+  }
+  
